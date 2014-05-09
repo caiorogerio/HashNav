@@ -26,8 +26,8 @@
 			jQuery.each(hash, function(i, name) {	
 				// verifica se o subitem existe no subnível corrente
 				if( name in handlersObj ) {
-					// dispara metodo default caso exista
-					handlersObj.default && handlersObj.default.call && handlersObj.default.apply( this, getArguments( i ) );
+					// dispara metodo _default caso exista
+					handlersObj._default && handlersObj._default.call && handlersObj._default.apply( this, getArguments( i ) );
 					// navega no nível adentro desejado
 					handlersObj = handlersObj[ name ];
 					// grava profundidade encontrada em uma váriavel externa
@@ -38,8 +38,8 @@
 				if( handlersObj.call ) return false;
 			});
 
-			if( handlersObj.default && handlersObj.default.call ) {
-				handlersObj.default.apply( this, getArguments( depth + 1 ) );
+			if( handlersObj._default && handlersObj._default.call ) {
+				handlersObj._default.apply( this, getArguments( depth + 1 ) );
 			}	
 
 			return handlersObj.call && handlersObj.apply( this, getArguments( depth + 1 ) );
